@@ -1,4 +1,4 @@
-package programmers.task;
+package programmers.task.serviсes;
 
 import programmers.task.models.Query;
 import programmers.task.models.WaitingTimeLine;

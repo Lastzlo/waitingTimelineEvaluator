@@ -1,5 +1,7 @@
 package programmers.task;
 
+import programmers.task.serviсes.WaitingTimelineEvaluator;
+
 import java.util.ArrayList;
 
 public class WaitingTimelineEvaluatorApplication {
