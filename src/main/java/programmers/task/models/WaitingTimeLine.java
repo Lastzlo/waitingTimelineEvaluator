@@ -1,4 +1,4 @@
-package programmers.task;
+package programmers.task.models;
 
 public class WaitingTimeLine {
 

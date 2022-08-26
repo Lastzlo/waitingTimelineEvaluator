@@ -1,5 +1,8 @@
 package programmers.task;
 
+import programmers.task.models.Query;
+import programmers.task.models.WaitingTimeLine;
+
 import java.util.ArrayList;
 
 public class WaitingTimelineEvaluator {
@@ -10,7 +13,7 @@ public class WaitingTimelineEvaluator {
 		int firstLineValue = Integer.parseInt(lines[0]);
 
 		int countOfAllLines = lines.length - 1;
-		assert (firstLineValue != countOfAllLines);
+//		assert (firstLineValue != countOfAllLines);
 
 		if (firstLineValue != lines.length - 1) throw new IllegalArgumentException(
 				String.format("The value of the first line: \"%1$s\" does not correspond to the count of all lines: \"%2$s\"", firstLineValue, countOfAllLines));

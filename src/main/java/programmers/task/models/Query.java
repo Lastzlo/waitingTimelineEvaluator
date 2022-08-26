@@ -1,8 +1,8 @@
-package programmers.task;
+package programmers.task.models;
 
 import java.util.Optional;
 
-class Query {
+public class Query {
 
 	private int serviceId;
 	private Optional<Integer> variationId = Optional.empty();
