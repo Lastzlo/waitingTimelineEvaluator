@@ -6,7 +6,9 @@ import programmers.task.models.WaitingTimeline;
 import java.util.ArrayList;
 
 public class WaitingTimelineEvaluator {
-
+	private static final String ILLEGAL_ARGUMENT_IN_FIRST_LINE_MESSAGE =
+			"Illegal argument in first line, an argument in first line: \"%1$s\" " +
+					"does not correspond to the count of all lines: \"%2$s\"";
 	public static ArrayList<String> evaluate(String input) {
 		String[] lines = input.split("\n");
 
@@ -24,10 +26,7 @@ public class WaitingTimelineEvaluator {
 			return result;
 		} else {
 			throw new IllegalArgumentException(String.format(
-					"Issue with first line, the value of the first line: \"%1$s\" " +
-							"does not correspond to the count of all lines: \"%2$s\"",
-					firstLineValue,
-					countOfAllLines));
+					ILLEGAL_ARGUMENT_IN_FIRST_LINE_MESSAGE,firstLineValue,countOfAllLines));
 		}
 
 	}

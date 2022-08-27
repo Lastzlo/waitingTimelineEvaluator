@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WaitingTimelineEvaluatorTest {
 
 	@Test
-	void whenEvaluate_butIssueWithFirstLine_thenIllegalArgumentException() {
+	void whenEvaluate_butIllegalArgumentInFirstLine_thenIllegalArgumentException() {
 		String input = """
 				8
 				C 1.1 8.15.1 P 15.10.2012 83
@@ -24,7 +24,7 @@ class WaitingTimelineEvaluatorTest {
 				IllegalArgumentException.class, () -> WaitingTimelineEvaluator.evaluate(input));
 		String exceptionMessage = exception.getMessage();
 		assertEquals(
-				"Issue with first line, the value of the first line: \"8\" " +
+				"Illegal argument in first line, an argument in first line: \"8\" " +
 						"does not correspond to the count of all lines: \"7\"", exceptionMessage);
 	}
 
