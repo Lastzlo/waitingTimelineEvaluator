@@ -29,7 +29,7 @@ class WaitingTimelineEvaluatorTest {
 	}
 
 	@Test
-	void whenEvaluate_butUnknownLineType_thenIllegalArgumentException() {
+	void whenEvaluate_butQueryLineDoesNotMatchPattern_thenIllegalArgumentException() {
 		String input = """
 				7
 				C 1.1 8.15.1 P 15.10.2012 83
@@ -44,6 +44,8 @@ class WaitingTimelineEvaluatorTest {
 		IllegalArgumentException exception = assertThrows(
 				IllegalArgumentException.class, () -> WaitingTimelineEvaluator.evaluate(input));
 		String exceptionMessage = exception.getMessage();
-		assertEquals("Unknown line type: \"Z 3 10.2 N 02.10.2012 100\"", exceptionMessage);
+		assertEquals("The query line: \"D 1 * P 8.10.2012-20.11.2012\" doesn't match the pattern \"" +
+				"D service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date_from[-date_to]" +
+				"\", please check the data", exceptionMessage);
 	}
 }
