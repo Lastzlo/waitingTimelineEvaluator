@@ -19,5 +19,7 @@ class QueryTest {
 	void whenParseQuery_thenCorrect() {
 		Query.parseQuery("D 3 10 P 01.12.2012");
 		Query.parseQuery("D 1.2 1.2.1 N 8.10.2012-20.11.2012");
+		Query.parseQuery("D 1.2 * P 01.12.2012");
+		Query.parseQuery("D * 1.2.1 N 8.10.2012-20.11.2012");
 	}
 }

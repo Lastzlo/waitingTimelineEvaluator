@@ -10,5 +10,6 @@ class ServiceTest {
 	void whenParseService_thenCorrect() {
 		Service.parseService("12.3");
 		Service.parseService("2");
+		Service.parseService("*");
 	}
 }

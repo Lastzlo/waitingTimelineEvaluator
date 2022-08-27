@@ -3,8 +3,9 @@ package programmers.task.models;
 import java.util.Optional;
 
 class Service {
-	private final int id;
+	private int id;
 	private Optional<Integer> variationId = Optional.empty();
+	private boolean isMatchAll = false;
 
 	public Service(int serviceId, int variationId) {
 		this.id = serviceId;
@@ -15,6 +16,14 @@ class Service {
 		this.id = serviceId;
 	}
 
+	private Service() {}
+
+	public static Service createMatchAllService() {
+		Service service = new Service();
+		service.isMatchAll = true;
+		return service;
+	}
+
 	public static Service parseService(String s) {
 		if (s.matches("[0-9]*\\.[0-9]*")) {
 			String[] strings = s.split("\\.");
@@ -22,6 +31,8 @@ class Service {
 			int variationId = Integer.parseInt(strings[1]);
 
 			return new Service(serviceId, variationId);
+		} else if (s.matches("\\*")) {
+			return createMatchAllService();
 		} else {
 			return new Service(Integer.parseInt(s));
 		}
@@ -38,6 +49,7 @@ class Service {
 //	 * it can wrap the waiting timelines with service_id.variation_id = 2 and service_id.variation_id = 2.3 etc.
 //	 */
 //	public boolean canWrap(Service service) {
+//		if (isMatchAll) return true;
 //		if (this.id != service.id) return false;
 //		if (this.variationId.isPresent()) {
 //			if (service.variationId.isEmpty()) return false;

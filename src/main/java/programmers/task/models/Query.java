@@ -18,10 +18,12 @@ public class Query {
 	 * For example:
 	 * <pre>
 	 *     D 1.2 1.2.1 P 01.12.2012
+	 *     D 1.2 * P 01.12.2012
 	 *     D 1.2 1.2.1 N 8.10.2012-20.11.2012
+	 *     D * 1.2.1 N 8.10.2012-20.11.2012
 	 * </pre>
 	 */
-	private static final String QUERY_LINE_REGEX = "D [0-9]*(\\.[0-9]*)? [0-9]*(\\.[0-9]*)?(\\.[0-9]*)? [PN] (3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((?:19|20)\\d{2})(\\-(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((?:19|20)\\d{2}))?$";
+	private static final String QUERY_LINE_REGEX = "D (([0-9]*(\\.[0-9]*)?)|\\*) (([0-9]*(\\.[0-9]*)?(\\.[0-9]*)?)|\\*) [PN] (3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((19|20)\\d{2})(\\-(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((19|20)\\d{2}))?$";
 
 //	private static final String ISSUE_IN_QUERY_LINE_MESSAGE = "Issues in query line: \"%s\"";
 	private static final String QUERY_DOESNT_MATCH_PATTERN_MESSAGE = "The query line: \"%s\" doesn't match the pattern \"D service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date_from[-date_to]\", please check the data";
@@ -43,7 +45,6 @@ public class Query {
 			DateInterval dateInterval = DateInterval.parseDateInterval(params[4]);
 
 			return new Query(service, questionType, responseType, dateInterval);
-//			return new Query();
 		} else {
 			throw new IllegalArgumentException(
 					String.format(QUERY_DOESNT_MATCH_PATTERN_MESSAGE, s));
