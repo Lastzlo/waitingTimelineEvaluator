@@ -51,7 +51,7 @@ public class Query {
 		}
 	}
 
-	public void handleWaitingTimeLine(WaitingTimeLine waitingTimeLine) {
+	public void handleWaitingTimeline(WaitingTimeline waitingTimeline) {
 
 	}
 

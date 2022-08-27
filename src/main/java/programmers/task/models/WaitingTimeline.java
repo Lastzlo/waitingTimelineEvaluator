@@ -1,6 +1,8 @@
 package programmers.task.models;
 
-public class WaitingTimeLine {
+//import java.util.Date;
+
+public class WaitingTimeline {
 
 	public static WaitingTimeLine parseWaitingTimeLine(String s) {
 		return new WaitingTimeLine();

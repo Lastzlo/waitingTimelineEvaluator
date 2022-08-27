@@ -1,7 +1,7 @@
 package programmers.task.serviсes;
 
 import programmers.task.models.Query;
-import programmers.task.models.WaitingTimeLine;
+import programmers.task.models.WaitingTimeline;
 
 import java.util.ArrayList;
 
@@ -41,9 +41,9 @@ public class WaitingTimelineEvaluator {
 				Query ql = Query.parseQuery(line);
 				queries.add(ql);
 			} else if (line.startsWith("C")) {
-				WaitingTimeLine wt = WaitingTimeLine.parseWaitingTimeLine(line);
+				WaitingTimeline wt = WaitingTimeline.parseWaitingTimeline(line);
 
-				queries.forEach(query -> query.handleWaitingTimeLine(wt));
+				queries.forEach(query -> query.handleWaitingTimeline(wt));
 			} else {
 				throw new IllegalArgumentException(String.format(
 						"Unknown line type: \"%s\"", line
