@@ -16,7 +16,7 @@ class Service {
 	}
 
 	public static Service parseService(String s) {
-		if (s.matches("[0-9]*\\.[0-9]")) {
+		if (s.matches("[0-9]*\\.[0-9]*")) {
 			String[] strings = s.split("\\.");
 			int serviceId = Integer.parseInt(strings[0]);
 			int variationId = Integer.parseInt(strings[1]);
