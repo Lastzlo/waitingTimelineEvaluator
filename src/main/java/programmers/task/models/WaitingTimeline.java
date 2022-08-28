@@ -1,5 +1,6 @@
 package programmers.task.models;
 
+import programmers.task.exceptions.MatchPatternException;
 import programmers.task.serviсes.DateParser;
 
 import java.time.LocalDate;
@@ -25,7 +26,7 @@ public class WaitingTimeline {
 	 */
 	private static final String WAITING_TIMELINE_REGEX = "C ([0-9]*(\\.[0-9]*)?) ([0-9]*(\\.[0-9]*)?(\\.[0-9]*)?) [PN] (3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((19|20)\\d{2}) [0-9]*$";
 
-	private static final String WAITING_TIMELINE_DOESNT_MATCH_PATTERN_MESSAGE = "The waiting timeline: \"%s\" doesn't match the pattern \"C service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date time\", please check the data";
+	public static final String WAITING_TIMELINE_PATTERN = "C service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date time";
 
 	public WaitingTimeline(Service service, QuestionType questionType, ResponseType responseType, LocalDate date, int time) {
 		this.service = service;
@@ -47,8 +48,7 @@ public class WaitingTimeline {
 
 			return new WaitingTimeline(service, questionType, responseType, date, time);
 		} else {
-			throw new IllegalArgumentException(
-					String.format(WAITING_TIMELINE_DOESNT_MATCH_PATTERN_MESSAGE, s));
+			throw new MatchPatternException(s, WAITING_TIMELINE_PATTERN);
 		}
 	}
 
