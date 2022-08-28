@@ -32,4 +32,9 @@ public class DateInterval {
 			return new DateInterval(dateFrom, dateTo);
 		}
 	}
+
+	public boolean isDateInInterval(LocalDate date) {
+		if (date.isBefore(dateFrom)) return false;
+		return dateTo.isEmpty() || !date.isAfter(dateTo.get());
+	}
 }
