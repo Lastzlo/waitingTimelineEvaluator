@@ -7,8 +7,8 @@ public class Query {
 	private ResponseType responseType;
 	private DateInterval dateInterval;
 
-	private int totalWaitingTime;
-	private int numberOfTimelines;
+	private int totalWaitingTime = 0;
+	private int numberOfTimelines = 0;
 
 	/**
 	 * Regex for query line in the format:
@@ -25,7 +25,6 @@ public class Query {
 	 */
 	private static final String QUERY_LINE_REGEX = "D (([0-9]*(\\.[0-9]*)?)|\\*) (([0-9]*(\\.[0-9]*)?(\\.[0-9]*)?)|\\*) [PN] (3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((19|20)\\d{2})(\\-(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((19|20)\\d{2}))?$";
 
-//	private static final String ISSUE_IN_QUERY_LINE_MESSAGE = "Issues in query line: \"%s\"";
 	private static final String QUERY_DOESNT_MATCH_PATTERN_MESSAGE = "The query line: \"%s\" doesn't match the pattern \"D service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date_from[-date_to]\", please check the data";
 
 	public Query(Service service, QuestionType questionType, ResponseType responseType, DateInterval dateInterval) {
@@ -52,7 +51,6 @@ public class Query {
 	}
 
 	public void handleWaitingTimeline(WaitingTimeline waitingTimeline) {
-
 	}
 
 	public String getOutput() {
