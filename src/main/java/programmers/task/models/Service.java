@@ -50,25 +50,6 @@ class Service {
 		}
 	}
 
-	/**
-	 * @param service the service we want to compare it to
-	 * @return {@code true} if {@code this.id} and {@code this.variationId}
-	 * the same or can wrap {@code service.id} and {@code service.variationId}
-	 *
-	 * For example, we have a query line with service_id.variation_id = 9.3,
-	 * it can wrap the waiting timeline with service_id.variation_id = 9.3,
-	 * or we have a query line with service_id.variation_id = 2,
-	 * it can wrap the waiting timelines with service_id.variation_id = 2 and service_id.variation_id = 2.3 etc.
-	 */
-	public boolean canWrap(Service service) {
-		if (isMatchAll) return true;
-		if (this.id != service.id) return false;
-		if (this.variationId.isPresent()) {
-			if (service.variationId.isEmpty()) return false;
-			return this.variationId.get().equals(service.variationId.get());
-		} else return true;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
