@@ -54,7 +54,7 @@ public class Query {
 	}
 
 	public String getOutput() {
-		if (totalWaitingTime == 0) return "*";
+		if (totalWaitingTime == 0) return "-";
 		int averageWaitingTime = totalWaitingTime / numberOfTimelines;
 		return Integer.toString(averageWaitingTime);
 	}

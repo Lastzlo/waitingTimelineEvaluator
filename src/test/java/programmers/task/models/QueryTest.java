@@ -32,8 +32,8 @@ class QueryTest {
 //	}
 
 	@Test
-	void whenGetOutput_butTotalWaitingTimeInZero_thenStar() {
+	void whenGetOutput_butTotalWaitingTimeInZero_thenDash() {
 		Query query = Query.parseQuery("D 3.1 10 P 01.12.2012");
-		assertEquals("*", query.getOutput());
+		assertEquals("-", query.getOutput());
 	}
 }
