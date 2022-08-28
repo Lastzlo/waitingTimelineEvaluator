@@ -13,8 +13,8 @@ class QueryTest {
 		MatchPatternException exception = assertThrows(MatchPatternException.class, ()-> Query.parseQuery(line));
 		assertEquals(
 				"Text 'D F 3 10 P 01.12.2012' doesn't match the pattern 'D service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date_from[-date_to]'", exception.getMessage());
-		assertEquals("D F 3 10 P 01.12.2012", exception.getMatchedString());
-		assertEquals("D service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date_from[-date_to]", exception.getPattern());
+		assertEquals(line, exception.getMatchedString());
+		assertEquals(Query.QUERY_PATTERN, exception.getPattern());
 	}
 
 	@Test
