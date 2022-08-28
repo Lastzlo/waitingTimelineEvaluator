@@ -32,6 +32,22 @@ public class QuestionType {
 	}
 	private QuestionType() {}
 
+	public int getId() {
+		return id;
+	}
+
+	public Optional<Integer> getCategoryId() {
+		return categoryId;
+	}
+
+	public Optional<Integer> getSubCategoryId() {
+		return subCategoryId;
+	}
+
+	public boolean isMatchAll() {
+		return isMatchAll;
+	}
+
 	public static QuestionType parseQuestionType(String s) {
 		if (s.matches("[0-9]*\\.[0-9]*\\.[0-9]*")) {
 			String[] strings = s.split("\\.");
