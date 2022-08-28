@@ -52,5 +52,23 @@ public class WaitingTimeline {
 		}
 	}
 
+	public Service getService() {
+		return service;
+	}
 
+	public QuestionType getQuestionType() {
+		return questionType;
+	}
+
+	public ResponseType getResponseType() {
+		return responseType;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public int getTime() {
+		return time;
+	}
 }
