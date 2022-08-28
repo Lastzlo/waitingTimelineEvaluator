@@ -22,4 +22,18 @@ class QueryTest {
 		Query.parseQuery("D 1.2 * P 01.12.2012");
 		Query.parseQuery("D * 1.2.1 N 8.10.2012-20.11.2012");
 	}
+
+//	@Test
+//	void whenHandleWaitingTimeline_butWaitingTimelineServiceInvalid_thenFalse() {
+//		Query query = Query.parseQuery("D 3.1 10 P 01.12.2012");
+//		WaitingTimeline wtl = WaitingTimeline.parseWaitingTimeline("C 3 10.2 N 02.10.2012 100");
+//		query.handleWaitingTimeline(wtl);
+//		assertEquals("*", query.getOutput());
+//	}
+
+	@Test
+	void whenGetOutput_butTotalWaitingTimeInZero_thenStar() {
+		Query query = Query.parseQuery("D 3.1 10 P 01.12.2012");
+		assertEquals("*", query.getOutput());
+	}
 }
