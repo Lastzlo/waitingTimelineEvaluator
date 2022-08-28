@@ -1,5 +1,7 @@
 package programmers.task.models;
 
+import programmers.task.exceptions.MatchPatternException;
+
 import java.util.Optional;
 
 public class Query {
@@ -29,6 +31,8 @@ public class Query {
 
 	private static final String QUERY_DOESNT_MATCH_PATTERN_MESSAGE = "The query line: \"%s\" doesn't match the pattern \"D service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date_from[-date_to]\", please check the data";
 
+	private static final String QUERY_PATTERN = "D service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date_from[-date_to]";
+
 	public Query(Service service, QuestionType questionType, ResponseType responseType, DateInterval dateInterval) {
 		this.service = service;
 		this.questionType = questionType;
@@ -47,8 +51,7 @@ public class Query {
 
 			return new Query(service, questionType, responseType, dateInterval);
 		} else {
-			throw new IllegalArgumentException(
-					String.format(QUERY_DOESNT_MATCH_PATTERN_MESSAGE, s));
+			throw new MatchPatternException(s, QUERY_PATTERN);
 		}
 	}
 
