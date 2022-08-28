@@ -3,21 +3,25 @@ package programmers.task;
 import programmers.task.serviсes.WaitingTimelineEvaluator;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class WaitingTimelineEvaluatorApplication {
 	public static void main(String[] args) {
-		String input = """
-				7
-				C 1.1 8.15.1 P 15.10.2012 83
-				C 1 10.1 P 01.12.2012 65
-				C 1.1 5.5.1 P 01.11.2012 117
-				D 1.1 8 P 01.01.2012-01.12.2012
-				C 3 10.2 N 02.10.2012 100
-				D 1 * P 8.10.2012-20.11.2012
-				D 3 10 P 01.12.2012
-				""";
+		System.out.println("Please paste data:");
+		Scanner scanner = new Scanner(System.in);
+		int countOfLines = Integer.parseInt(scanner.nextLine());
+		System.out.println("Count of all lines: " + countOfLines);
 
-		ArrayList<String> results = WaitingTimelineEvaluator.evaluate(input);
+		ArrayList<String> lines = new ArrayList<>();
+		for (int i = 0; i < countOfLines; i++) {
+			lines.add(scanner.nextLine());
+		}
+		scanner.close();
+		System.out.println("Input:");
+		lines.forEach(System.out::println);
+
+		ArrayList<String> results = WaitingTimelineEvaluator.evaluate(lines);
+		System.out.println("Output:");
 		results.forEach(System.out::println);
 	}
 

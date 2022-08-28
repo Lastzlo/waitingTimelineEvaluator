@@ -4,38 +4,15 @@ import programmers.task.models.Query;
 import programmers.task.models.WaitingTimeline;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class WaitingTimelineEvaluator {
-	private static final String ILLEGAL_ARGUMENT_IN_FIRST_LINE_MESSAGE =
-			"Illegal argument in first line, an argument in first line: \"%1$s\" " +
-					"does not correspond to the count of all lines: \"%2$s\"";
-	public static ArrayList<String> evaluate(String input) {
-		String[] lines = input.split("\n");
+	public static ArrayList<String> evaluate(ArrayList<String> lines) {
+		Collections.reverse(lines);
 
-		int firstLineValue = Integer.parseInt(lines[0]);
-		int countOfAllLines = lines.length - 1;
-
-		if (firstLineValue == lines.length - 1) {
-			ArrayList<Query> queries = handleLines(lines);
-
-			ArrayList<String> result = new ArrayList<>();
-			for (int i = queries.size() - 1; i >= 0; i--) {
-				result.add(queries.get(i).getOutput());
-			}
-
-			return result;
-		} else {
-			throw new IllegalArgumentException(String.format(
-					ILLEGAL_ARGUMENT_IN_FIRST_LINE_MESSAGE,firstLineValue,countOfAllLines));
-		}
-
-	}
-
-	private static ArrayList<Query> handleLines(String[] lines) {
 		ArrayList<Query> queries = new ArrayList<>();
-		for (int i = lines.length - 1; i > 0; i--) {
-			String line = lines[i];
-
+		lines.forEach(line -> {
 			if (line.startsWith("D")) {
 				Query ql = Query.parseQuery(line);
 				queries.add(ql);
@@ -48,7 +25,14 @@ public class WaitingTimelineEvaluator {
 						"Unknown line type: \"%s\"", line
 				));
 			}
+		});
+
+		ArrayList<String> result = new ArrayList<>();
+		for (int i = queries.size() - 1; i >= 0; i--) {
+			result.add(queries.get(i).getOutput());
 		}
-		return queries;
+
+		return result;
 	}
+
 }
