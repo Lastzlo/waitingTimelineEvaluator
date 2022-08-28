@@ -4,8 +4,11 @@
 > Waiting timeline evaluator is an analytical tool to evaluate waiting time on types of questions, categories, and services
 
 ## How to run
-1. open the folder with the project in cmd
-2. run command `java -jar waitingTimelineEvaluator.jar`
+1. Download the latest jar from [releases](https://github.com/Lastzlo/waitingTimelineEvaluator/releases) 
+2. open the folder with the file in cmd
+3. run command `java -jar waitingTimelineEvaluator.jar`
+### Requirements:
+* Java 17
 
 ## Purpose of the app
 > Webhosting company provides customer support via email. They record reply waiting time,
