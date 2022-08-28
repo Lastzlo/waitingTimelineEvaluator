@@ -1,5 +1,7 @@
 package programmers.task.models;
 
+import java.util.Optional;
+
 public class Query {
 
 	private Service service;
@@ -50,7 +52,39 @@ public class Query {
 		}
 	}
 
-	public void handleWaitingTimeline(WaitingTimeline waitingTimeline) {
+	public void handleWaitingTimeline(WaitingTimeline wtl) {
+		if (isWaitingTimelineValid(wtl)) {
+			totalWaitingTime = totalWaitingTime + wtl.getTime();
+			numberOfTimelines++;
+		}
+	}
+
+	private boolean isWaitingTimelineValid(WaitingTimeline wtl) {
+		if (! isWaitingTimelineServiceValid(wtl.getService())) return false;
+		if (! isWaitingTimelineQuestionTypeValid(wtl.getQuestionType())) return false;
+		if (! responseType.equals(wtl.getResponseType())) return false;
+		return dateInterval.isDateInInterval(wtl.getDate());
+	}
+
+	private boolean isWaitingTimelineQuestionTypeValid(QuestionType wtlQuestionType) {
+		if (questionType.isMatchAll()) return true;
+		if (questionType.getId() != wtlQuestionType.getId()) return false;
+		if (! isValidSubCategory(questionType.getCategoryId(), wtlQuestionType.getCategoryId())) return false;
+		return isValidSubCategory(questionType.getSubCategoryId(), wtlQuestionType.getSubCategoryId());
+	}
+
+	private boolean isWaitingTimelineServiceValid(Service wtlService) {
+		if (service.isMatchAll()) return true;
+		if (service.getId() != wtlService.getId()) return false;
+		return isValidSubCategory(service.getVariationId(), wtlService.getVariationId());
+	}
+
+	private boolean isValidSubCategory(Optional<Integer> querySubCategory, Optional<Integer> wtlSubCategory) {
+		if(querySubCategory.isEmpty()) return true;
+		else {
+			if (wtlSubCategory.isEmpty()) return false;
+			return querySubCategory.get().equals(wtlSubCategory.get());
+		}
 	}
 
 	public String getOutput() {
@@ -58,6 +92,5 @@ public class Query {
 		int averageWaitingTime = totalWaitingTime / numberOfTimelines;
 		return Integer.toString(averageWaitingTime);
 	}
-
 
 }
