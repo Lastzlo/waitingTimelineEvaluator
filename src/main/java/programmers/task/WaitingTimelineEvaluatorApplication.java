@@ -10,7 +10,7 @@ public class WaitingTimelineEvaluatorApplication {
 		System.out.println("Please paste data:");
 		Scanner scanner = new Scanner(System.in);
 		int countOfLines = Integer.parseInt(scanner.nextLine());
-		System.out.println("Count of all lines: " + countOfLines);
+//		System.out.println("Count of all lines: " + countOfLines);
 
 		ArrayList<String> lines = new ArrayList<>();
 		for (int i = 0; i < countOfLines; i++) {
