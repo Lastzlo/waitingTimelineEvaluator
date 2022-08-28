@@ -10,22 +10,22 @@ public class QuestionType {
 
 	private boolean isMatchAll = false;
 
-	public QuestionType(int id) {
+	private QuestionType(int id) {
 		this.id = id;
 	}
 
-	public QuestionType(int id, int categoryId) {
+	private QuestionType(int id, int categoryId) {
 		this.id = id;
 		this.categoryId = Optional.of(categoryId);
 	}
 
-	public QuestionType(int id, int categoryId, int subCategoryId) {
+	private QuestionType(int id, int categoryId, int subCategoryId) {
 		this.id = id;
 		this.categoryId = Optional.of(categoryId);
 		this.subCategoryId = Optional.of(subCategoryId);
 	}
 
-	public static QuestionType createMatchAllQuestionType() {
+	private static QuestionType createMatchAllQuestionType() {
 		QuestionType questionType = new QuestionType();
 		questionType.isMatchAll = true;
 		return questionType;
@@ -67,5 +67,27 @@ public class QuestionType {
 		} else {
 			return new QuestionType(Integer.parseInt(s));
 		}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		QuestionType that = (QuestionType) o;
+
+		if (isMatchAll != that.isMatchAll) return false;
+		if (id != that.id) return false;
+		if (!categoryId.equals(that.categoryId)) return false;
+		return subCategoryId.equals(that.subCategoryId);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id;
+		result = 31 * result + categoryId.hashCode();
+		result = 31 * result + subCategoryId.hashCode();
+		result = 31 * result + (isMatchAll ? 1 : 0);
+		return result;
 	}
 }

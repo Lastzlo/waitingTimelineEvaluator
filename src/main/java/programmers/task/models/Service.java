@@ -68,4 +68,24 @@ class Service {
 			return this.variationId.get().equals(service.variationId.get());
 		} else return true;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Service service = (Service) o;
+
+		if (isMatchAll != service.isMatchAll) return false;
+		if (id != service.id) return false;
+		return variationId.equals(service.variationId);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id;
+		result = 31 * result + variationId.hashCode();
+		result = 31 * result + (isMatchAll ? 1 : 0);
+		return result;
+	}
 }
